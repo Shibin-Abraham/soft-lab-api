@@ -50,7 +50,7 @@ if(isset($data->OTP,$data->sessionId)){
     }
 }else{
     $response = array(
-        "statuscode" => 400 
+        "statuscode" => 400 //bad request
     );
     echo json_encode($response,JSON_PRETTY_PRINT);
 }
