@@ -27,7 +27,15 @@
             if(password_verify($password,$h_password)){
                 $response = array(
                     "statuscode" => 200,
-                    "JWT" => generateJWT($u_id,$name,$email,$phone,$join_date,$status,$r_id,$r_name) //user defined function return jwt token
+                    "u_id" => $u_id,
+                    "name" => $name,
+                    "email" => $email,
+                    "phone" => $phone,
+                    "join_date" => $join_date,
+                    "status" => $status,
+                    "r_id" => $r_id,
+                    "r_name" => $r_name,
+                    "JWT" => generateJWT($u_id,$name,$email,$phone,$join_date,$status,$r_id,$r_name), //user defined function return jwt token
              );
              echo json_encode($response,JSON_PRETTY_PRINT);
             }else{
@@ -72,8 +80,8 @@ function generateJWT($u_id,$name,$email,$phone,$join_date,$status,$r_id,$r_name)
                 'status' => $status,
                 'r_id' => $r_id,
                 'r_name' => $r_name
-           ],
-           ];
+            ],
+    ];
     $jwt = JWT::encode($payload,$secret_key,'HS256');
     return $jwt;
 }
