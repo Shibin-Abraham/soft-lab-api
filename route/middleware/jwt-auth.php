@@ -7,7 +7,7 @@ use Firebase\JWT\ExpiredException;
 
 function JWTStatus($token){
     try{
-        $secret = "soft_lab@123";
+        $secret = "soft_lab@123"; //secret key
         $user_obj = JWT::decode($token,new Key($secret, 'HS256'));
         $response = array(
             "statuscode" => 200, // 200 token successfully verified
