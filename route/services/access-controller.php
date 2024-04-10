@@ -1,6 +1,8 @@
 <?php include("../../config/constants.php");
     include('../middleware/jwt-auth.php');
+
     header('Content-type:JSON');
+    
     $request = file_get_contents("php://input",true);
     $data = json_decode($request);
     $allheaders = getallheaders();
@@ -15,7 +17,7 @@
                 $result = mysqli_query($conn,$sql);
                 if($result){
                     $response = array(
-                        "statuscode" => 200 // 400 bad request
+                        "statuscode" => 200 // success
                     );
                     echo json_encode($response,JSON_PRETTY_PRINT);
                 }else{
@@ -31,24 +33,6 @@
                 );
                 echo json_encode($response,JSON_PRETTY_PRINT);
             }
-            
-            /*$sql = "SELECT * FROM recent_activities";
-            $result = mysqli_query($conn,$sql);
-            $response = array();
-            if(mysqli_num_rows($result)>0){
-                $i = 0;
-                while($row = mysqli_fetch_assoc($result)){
-                    $response[$i]['id'] = $row['id'];
-                    $response[$i]['name'] = $row['name'];
-                    $response[$i]['email'] = $row['email'];
-                    $response[$i]['date'] = $row['date'];
-                    $response[$i]['time'] = $row['time'];
-                    $response[$i]['details'] = $row['details'];
-                    $response[$i]['operation'] = $row['operation'];
-                    $i++; 
-                }
-            }
-            echo json_encode($response,JSON_PRETTY_PRINT);*/
         }else{
             $response = array(
                 "statuscode" => 401 // 401 token expired
