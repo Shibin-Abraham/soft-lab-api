@@ -1,6 +1,6 @@
 <?php include("../../config/constants.php");
     include('../middleware/jwt-auth.php');
-
+    
     $request = file_get_contents("php://input",true);
     $data = json_decode($request);
     $allheaders = getallheaders();
@@ -30,6 +30,7 @@
                     $i++; 
                 }
             }
+            
             echo json_encode($response,JSON_PRETTY_PRINT);
         }else{
             $response = array(

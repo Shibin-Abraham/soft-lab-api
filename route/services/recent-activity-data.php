@@ -1,6 +1,6 @@
 <?php include("../../config/constants.php");
     include('../middleware/jwt-auth.php');
-
+    header('Content-type:JSON');
     $request = file_get_contents("php://input",true);
     $data = json_decode($request);
     $allheaders = getallheaders();
