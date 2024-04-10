@@ -70,7 +70,7 @@ function generateJWT($u_id,$name,$email,$phone,$join_date,$status,$r_id,$r_name)
     $payload = [
            'iss'=>'localhost',
            'aud'=>'localhost',
-           'exp'=>time()+10000,
+           'exp'=>time()+43200,
            'data'=>[
                 'u_id' => $u_id,
                 'email' => $email,
