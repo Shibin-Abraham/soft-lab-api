@@ -6,7 +6,7 @@
     $allheaders = getallheaders();
     if(!empty($allheaders['Authorization'])){
         $auth_result = JWTStatus($allheaders['Authorization']);
-        if($auth_result['statuscode'] === 200 && $auth_result['status'] === '1'){
+        if($auth_result['statuscode'] === 200 && $auth_result['status'] === '1' && $auth_result['r_id'] === '1'){
             $sql = "SELECT * FROM stock ORDER BY id DESC";
             $result = mysqli_query($conn,$sql);
             $response = array();
@@ -25,6 +25,67 @@
                 }
             }
             echo json_encode($response,JSON_PRETTY_PRINT);
+        }else if($auth_result['statuscode'] === 200 && $auth_result['status'] === '1' && $auth_result['r_id'] === '2'){
+            $u_id = $auth_result['u_id'];
+            $sql = "SELECT * FROM stock_handling_users WHERE u_id = '$u_id';";
+            $result = mysqli_query($conn,$sql);
+            $response = array();
+            if(mysqli_num_rows($result)>0){
+                $i = 0;
+                while($row = mysqli_fetch_assoc($result)){
+                    $s_id = $row['s_id'];
+                    $sql2 = "SELECT * FROM `stock` WHERE id='$s_id';";
+                    $result2 = mysqli_query($conn,$sql2);
+                    if(mysqli_num_rows($result2)==1){
+                        $row2 = mysqli_fetch_row($result2);
+                        $response[$i]['id'] = $row['s_id'];
+                        $response[$i]['role_name'] = $row['role_name'];
+                        $response[$i]['name'] = $row2[1];
+                        $response[$i]['type'] = $row2[2];
+                        $response[$i]['category'] = $row2[3];
+                        $response[$i]['invoice_id'] = $row2[4];
+                        $response[$i]['invoice_date'] = $row2[5];
+                        $response[$i]['supplier_name'] = $row2[6];
+                        $response[$i]['dump'] = $row2[7];
+                        $i++;
+                    }
+                    
+                }
+                echo json_encode($response,JSON_PRETTY_PRINT);
+            }else{
+                echo json_encode($response,JSON_PRETTY_PRINT);
+            }
+            
+        }else if($auth_result['statuscode'] === 200 && $auth_result['status'] === '1' && $auth_result['r_id'] === '3'){
+            $u_id = $auth_result['u_id'];
+            $sql = "SELECT * FROM stock_handling_users WHERE u_id = '$u_id';";
+            $result = mysqli_query($conn,$sql);
+            $response = array();
+            if(mysqli_num_rows($result)>0){
+                $i = 0;
+                while($row = mysqli_fetch_assoc($result)){
+                    $s_id = $row['s_id'];
+                    $sql2 = "SELECT * FROM `stock` WHERE id='$s_id';";
+                    $result2 = mysqli_query($conn,$sql2);
+                    if(mysqli_num_rows($result2)==1){
+                        $row2 = mysqli_fetch_row($result2);
+                        $response[$i]['id'] = $row['s_id'];
+                        $response[$i]['role_name'] = $row['role_name'];
+                        $response[$i]['name'] = $row2[1];
+                        $response[$i]['type'] = $row2[2];
+                        $response[$i]['category'] = $row2[3];
+                        $response[$i]['invoice_id'] = $row2[4];
+                        $response[$i]['invoice_date'] = $row2[5];
+                        $response[$i]['supplier_name'] = $row2[6];
+                        $response[$i]['dump'] = $row2[7];
+                        $i++;
+                    }
+                    
+                }
+                echo json_encode($response,JSON_PRETTY_PRINT);
+            }else{
+                echo json_encode($response,JSON_PRETTY_PRINT);
+            }
         }else{
             $response = array(
                 "statuscode" => 401 // 401 token expired
