@@ -13,7 +13,8 @@
             $response = array(
                 "statuscode" => 200, //success
                 "percentage" => (int) $count,
-                "count" => $active_stock
+                "count" => $active_stock,
+                "total" => $total_stock
             );
             echo json_encode($response,JSON_PRETTY_PRINT);
         }elseif($_GET['id'] == 2){
@@ -29,7 +30,8 @@
             $response = array(
                 "statuscode" => 200, //success
                 "percentage" => (int) $count,
-                "count" =>$active_item
+                "count" =>$active_item,
+                "total" => $total_item
             );
             echo json_encode($response,JSON_PRETTY_PRINT);
         }elseif($_GET['id'] == 3){
@@ -45,7 +47,8 @@
             $response = array(
                 "statuscode" => 200, //success
                 "percentage" => (int) $count,
-                "count" => $no_of_borrower
+                "count" => $no_of_borrower,
+                "total" => $active_item
             );
             echo json_encode($response,JSON_PRETTY_PRINT);
         }else{
