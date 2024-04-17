@@ -9,6 +9,7 @@
         if($auth_result['statuscode'] === 200 && $auth_result['status'] === '1'){
             $sql = "SELECT * FROM `item` ORDER BY warranty";
             $result = mysqli_query($conn,$sql);
+            $response = array();
             if(mysqli_num_rows($result)>0){
                 $response = array();
                 $i = 0;
