@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $response = array("HOD","Manager","Assistent");
         echo json_encode($response,JSON_PRETTY_PRINT);
     }else{
-        $response = array( "Manager", "Assistent");
+        $response = array( "Manager", "Assistant");
         echo json_encode($response,JSON_PRETTY_PRINT);
     }
 }else{
