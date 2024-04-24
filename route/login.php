@@ -2,7 +2,7 @@
     require '../vendor/autoload.php';
 
     use Firebase\JWT\JWT;
-
+    header('Content-type:JSON');
     $request = file_get_contents("php://input",true);
     $data = json_decode($request);
     if(isset($data->email,$data->password)){
