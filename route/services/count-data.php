@@ -35,7 +35,7 @@
             );
             echo json_encode($response,JSON_PRETTY_PRINT);
         }elseif($_GET['id'] == 3){
-            $sql = "SELECT COUNT(id) AS count FROM borrowers";
+            $sql = "SELECT COUNT(id) AS count FROM borrowers WHERE return_status = 0";
             $res = mysqli_query($conn,$sql);
             $data = mysqli_fetch_assoc($res);
             $no_of_borrower = $data['count'];
