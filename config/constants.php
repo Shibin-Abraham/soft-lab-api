@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST,GET');
 header('Access-Control-Allow-Headers: *');
-define('SITEURL','http://localhost/Soft-Lab-API/');//this is siturl
+define('SITEURL','http://localhost/Soft-Lab-API/images/');//this is siturl
 
         define('HOSTNAME','localhost');
         define('DB_USERNAME','root');
