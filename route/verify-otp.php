@@ -16,9 +16,9 @@ if(isset($data->OTP,$data->sessionId)){
             if($_SESSION['role']=="HOD"){
                 $role = 1;
                 $status = 1;
-            }elseif($_SESSION['role']=='Manager'){
+            }elseif($_SESSION['role']=="Manager"){
                 $role = 2;
-            }elseif($_SESSION['role']=='Assistent'){
+            }elseif($_SESSION['role']=="Assistant"){
                 $role = 3;
             }
             $sql = "INSERT INTO `user` (`id`, `name`, `email`, `password`, `phone`, `join_date`,`status`,`r_id`) VALUES (NULL, '$name', '$email', '$password', '$phone', '$date','$status','$role');";
